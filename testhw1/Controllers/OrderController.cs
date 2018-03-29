@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace testhw1.Controllers
 {
-    public class indexController : Controller
+    public class OrderController : Controller
     {
         // GET: index
         public ActionResult Index()
