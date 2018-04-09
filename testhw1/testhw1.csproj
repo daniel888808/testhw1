@@ -108,10 +108,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AllService.cs" />
     <Compile Include="Models\HrEmployees.cs" />
     <Compile Include="Models\SalesCustomers.cs" />
     <Compile Include="Models\SalesShippers.cs" />
-    <Compile Include="Models\SeleOrder.cs" />
+    <Compile Include="Models\SalesOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -124,6 +125,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\index\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Order\SearchOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

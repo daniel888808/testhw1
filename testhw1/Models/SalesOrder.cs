@@ -5,7 +5,7 @@ using System.Web;
 
 namespace testhw1.Models
 {
-    public class SeleOrder
+    public class SalesOrder
     {
         public Int32 OrderID { get; set; }
 

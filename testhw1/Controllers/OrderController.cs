@@ -13,5 +13,11 @@ namespace testhw1.Controllers
         {
             return View();
         }
+        public ActionResult SearchOrder()
+        {
+            Models.AllService allService = new Models.AllService();
+            var result = allService.GetOrdersByCondition(new Models.SalesOrder());
+            return View();
+        }
     }
 }
