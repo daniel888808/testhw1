@@ -4,36 +4,38 @@
 }
 
 <h2>SearchOrder</h2>
+<form>
 <table>
     <tr>
         <th>訂單編號</th>
-        <th></th>
+        <th><input type="text" id="OrderID"/></th>
     </tr>
     <tr>
         <th>客戶名稱</th>
-        <th></th>
+        <th><input type="text" id="ContactName" /></th>
     <tr>
-        <th>負責公司</th>
-        <th></th>
+        <th>負責員工</th>
+        <th>@ViewBag.SelectEmployee</th>
     </tr>
     <tr>
         <th>出貨公司</th>
-        <th></th>
+        <th>@ViewBag.SelectCompony</th>
     </tr>
     <tr>
         <th>訂購日期</th>
-        <th></th>
+        <th><input type="date" id="OderDate" /></th>
     </tr>
     <tr>
         <th>出貨日期</th>
-        <th></th>
+        <th><input type="date" id="ShipperDate" /></th>
     </tr>
     <tr>
         <th>需要日期</th>
-        <th></th>
+        <th><input type="date" id="RequiredDate" /></th>
     </tr>
     <tr>
         <th></th>
-        <th></th>
+        <th><input type="button" value="查詢"> <input type="button" value="清除"> <input type="button" value="新增訂單"></th>
     </tr>
 </table>
+</form>

@@ -17,6 +17,8 @@ namespace testhw1.Controllers
         {
             Models.AllService allService = new Models.AllService();
             var result = allService.GetOrdersByCondition(new Models.SalesOrder());
+            ViewBag.SelectEmployee = '<select name="carlist" form="">< option value = "audi" > Audi</ option ></ select > ';
+            ViewBag.SelectCompony = '';
             return View();
         }
     }
