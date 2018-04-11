@@ -13,12 +13,40 @@ namespace testhw1.Controllers
         {
             return View();
         }
+
+        [HttpGet()]
         public ActionResult SearchOrder()
         {
             Models.AllService allService = new Models.AllService();
-            var result = allService.GetOrdersByCondition(new Models.SalesOrder());
-            ViewBag.SelectEmployee = '<select name="carlist" form="">< option value = "audi" > Audi</ option ></ select > ';
-            ViewBag.SelectCompony = '';
+            var OrderResult = allService.GetOrdersByCondition(new Models.SalesOrder());
+            var EmployeeResult = allService.GetEmployeesByCondition(new Models.HrEmployees() {});
+            var CustomersResult = allService.GetCustomersByCondition(new Models.SalesCustomers());
+            var ShiperResult = allService.GetShiperByCondition(new Models.SalesShippers());
+            ///員工的select
+            List<SelectListItem> EmpItems = new List<SelectListItem>();
+            foreach (var category in EmployeeResult)
+            {
+                EmpItems.Add(new SelectListItem()
+                {
+                    Text = category.FirstName + category.LastName,
+                    Value = category.EmployeeID.ToString()
+                }
+                    );
+            }
+            ///出貨公司Select
+            List<SelectListItem> ShipperItems = new List<SelectListItem>();
+            foreach (var category in ShiperResult)
+            {
+                ShipperItems.Add(new SelectListItem()
+                {
+                    Text = category.CompanyName,
+                    Value = category.ShipperID.ToString()
+                }
+                    );
+            }
+
+            ViewBag.SelectEmployee = EmpItems;
+            ViewBag.SelectCompony =ShipperItems;
             return View();
         }
     }

@@ -1,10 +1,11 @@
 ﻿
 @{
-    ViewBag.Title = "SearchOrder";
+    ViewBag.Title = "搜尋訂單";
 }
 
 <h2>SearchOrder</h2>
-<form>
+@using (Html.BeginForm("SearchOrder", "Default"))
+{ 
 <table>
     <tr>
         <th>訂單編號</th>
@@ -15,11 +16,11 @@
         <th><input type="text" id="ContactName" /></th>
     <tr>
         <th>負責員工</th>
-        <th>@ViewBag.SelectEmployee</th>
+        <th>@Html.DropDownList("SelectEmployee", (IEnumerable<SelectListItem>)ViewBag.SelectEmployee) </th>
     </tr>
     <tr>
         <th>出貨公司</th>
-        <th>@ViewBag.SelectCompony</th>
+        <th>@Html.DropDownList("SelectCompony", (IEnumerable<SelectListItem>)ViewBag.SelectCompony)</th>
     </tr>
     <tr>
         <th>訂購日期</th>
@@ -35,7 +36,7 @@
     </tr>
     <tr>
         <th></th>
-        <th><input type="button" value="查詢"> <input type="button" value="清除"> <input type="button" value="新增訂單"></th>
+        <th><input type="submit" valusu查詢"> <input type="button" value="清除"> <input type="button" value="新增訂單"></th>
     </tr>
 </table>
-</form>
+}
