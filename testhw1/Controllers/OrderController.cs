@@ -49,5 +49,31 @@ namespace testhw1.Controllers
             ViewBag.SelectCompony =ShipperItems;
             return View();
         }
-    }
+
+        [HttpPost()]
+        public ActionResult SearchOrderResult(FormCollection post ,Models.SalesOrder arg)
+        {
+            Models.AllService allService = new Models.AllService();
+            string OrderID = post["OrderID"];
+            string ContactName = post["ContactName"];
+            string SelectEmployee = post["SelectEmployee"];
+            string SelectCompony = post["SelectCompony"];
+            string OderDate = post["OderDate"];
+            string ShipperDate = post["ShipperDate"];
+            string RequiredDate = post["RequiredDate"];
+            var OrderResult = allService.GetOrdersByCondition(new Models.SalesOrder());
+            var EmployeeResult = allService.GetEmployeesByCondition(new Models.HrEmployees() {});
+            var CustomersResult = allService.GetCustomersByCondition(new Models.SalesCustomers());
+            var ShiperResult = allService.GetShiperByCondition(new Models.SalesShippers());
+            ///string Result="";
+            List<Models.SalesOrder> test = OrderResult.Where(m => OrderID.Equals(m.OrderID)).ToList();
+            ///foreach (var category in test)
+            ///{
+               /// Result=category.OrderID,category.CustomerID,category.EmployeeID, category.ShipperID, category.OrderDate, category.ShippedDate, category.RequiredDate));
+            ///}
+            ViewBag.Result = test;
+            ViewBag.OrderID = OrderID;
+            return View();
+        }
+        }
 }

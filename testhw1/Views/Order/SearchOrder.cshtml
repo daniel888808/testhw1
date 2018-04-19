@@ -4,16 +4,16 @@
 }
 
 <h2>SearchOrder</h2>
-@using (Html.BeginForm("SearchOrder", "Default"))
+@using (Html.BeginForm("SearchOrderResult", "Order"))
 { 
 <table>
     <tr>
         <th>訂單編號</th>
-        <th><input type="text" id="OrderID"/></th>
+        <th><input type="text" id="OrderID" name="OrderID"/></th>
     </tr>
     <tr>
         <th>客戶名稱</th>
-        <th><input type="text" id="ContactName" /></th>
+        <th><input type="text" id="ContactName" name="ContactName"/></th>
     <tr>
         <th>負責員工</th>
         <th>@Html.DropDownList("SelectEmployee", (IEnumerable<SelectListItem>)ViewBag.SelectEmployee) </th>
@@ -24,18 +24,18 @@
     </tr>
     <tr>
         <th>訂購日期</th>
-        <th><input type="date" id="OderDate" /></th>
+        <th><input type="date" id="OderDate" name="OderDate"/></th>
     </tr>
     <tr>
         <th>出貨日期</th>
-        <th><input type="date" id="ShipperDate" /></th>
+        <th><input type="date" id="ShipperDate" name="ShipperDate"/></th>
     </tr>
     <tr>
         <th>需要日期</th>
-        <th><input type="date" id="RequiredDate" /></th>
+        <th><input type="date" id="RequiredDate" name="RequiredDate"/></th>
     </tr>
     <tr>
-        <th></th>
+        <th>@ViewBag.Result</th>
         <th><input type="submit" valusu查詢"> <input type="button" value="清除"> <input type="button" value="新增訂單"></th>
     </tr>
 </table>

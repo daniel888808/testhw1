@@ -5,8 +5,10 @@ using System.Web;
 
 namespace testhw1.Models
 {
+
     public class SalesOrder
     {
+
         public Int32 OrderID { get; set; }
 
         public Int32 CustomerID { get; set; }
