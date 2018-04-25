@@ -24,6 +24,11 @@ namespace testhw1.Controllers
             var ShiperResult = allService.GetShiperByCondition(new Models.SalesShippers());
             ///員工的select
             List<SelectListItem> EmpItems = new List<SelectListItem>();
+            EmpItems.Add(new SelectListItem()
+            {
+                Text = "不選員工",
+                Value = "0"
+            });
             foreach (var category in EmployeeResult)
             {
                 EmpItems.Add(new SelectListItem()
@@ -35,6 +40,12 @@ namespace testhw1.Controllers
             }
             ///出貨公司Select
             List<SelectListItem> ShipperItems = new List<SelectListItem>();
+            ShipperItems.Add(new SelectListItem()
+            {
+                Text = "不選公司",
+                Value = "0"
+            }
+                    );
             foreach (var category in ShiperResult)
             {
                 ShipperItems.Add(new SelectListItem()
@@ -54,35 +65,65 @@ namespace testhw1.Controllers
         public ActionResult SearchOrderResult(FormCollection post ,Models.SalesOrder arg)
         {
             Models.AllService allService = new Models.AllService();
-            
+            int? OrderIDint=null;
+            int? SelectEmployeeint =0;
+            int? SelectComponyint = 0;
             string OrderID = post["OrderID"];
-            string ContactName = post["ContactName"];
             string SelectEmployee = post["SelectEmployee"];
             string SelectCompony = post["SelectCompony"];
+            string ContactName = post["ContactName"];
             string OderDate = post["OderDate"];
             string ShipperDate = post["ShipperDate"];
             string RequiredDate = post["RequiredDate"];
-            var OrderResult = allService.GetOrdersByCondition(new Models.SalesOrder());
-            var EmployeeResult = allService.GetEmployeesByCondition(new Models.HrEmployees() {});
-            var CustomersResult = allService.GetCustomersByCondition(new Models.SalesCustomers());
-            var ShiperResult = allService.GetShiperByCondition(new Models.SalesShippers());
             try
             {
-                int OrderIDint = Int32.Parse(OrderID);
-                List<Models.SalesOrder> test = OrderResult.Where(m => OrderIDint.Equals(m.OrderID)).ToList();
-                ViewBag.Result = test;
+                OrderIDint = Int32.Parse(OrderID);
+                SelectEmployeeint = Int32.Parse(SelectEmployee);
+                SelectComponyint = Int32.Parse(SelectCompony);
+
             }
             catch (FormatException e)
             {
                 Console.WriteLine(e.Message);
             }
-            ///string Result="";
             
-            ///foreach (var category in test)
-            ///{
-               /// Result=category.OrderID,category.CustomerID,category.EmployeeID, category.ShipperID, category.OrderDate, category.ShippedDate, category.RequiredDate));
-            ///}
             
+            ///待加例外處理
+            ///var OrderResult = allService.GetOrdersByCondition(new Models.SalesOrder());
+            IEnumerable<Models.HrEmployees> EmployeeResult = allService.GetEmployeesByCondition(new Models.HrEmployees());
+            IEnumerable<Models.SalesCustomers> CustomersResult = allService.GetCustomersByCondition(new Models.SalesCustomers() {});
+            IEnumerable<Models.SalesShippers> ShiperResult = allService.GetShiperByCondition(new Models.SalesShippers());
+            IEnumerable<Models.SalesOrder> OrderResult = allService.GetOrdersByCondition(new Models.SalesOrder()); ;
+            IEnumerable<Models.SalesOrder> result=null;
+            ///orderid查
+            if (!string.IsNullOrWhiteSpace(OrderID))
+            {
+                result = OrderResult.Where(m => OrderIDint.Equals(m.OrderID)).ToList();
+            }
+            ///客戶名稱查
+            if (!string.IsNullOrWhiteSpace(ContactName))
+            {
+                result =
+                    from o in OrderResult
+                    join c in CustomersResult on o.CustomerID equals c.CustomerID
+                    where c.CompanyName.Contains(ContactName)
+                    select o;
+                ///List<Models.SalesCustomers> Customername = CustomersResult.Where(m => ContactName.Contains(m.ContactName)).ToList();
+                ///result = OrderResult.Where(m => Customername.Equals(m.CustomerID)).ToList();
+            }
+            /// 員工查
+            if (SelectEmployeeint != 0)
+            {
+                result = OrderResult.Where(m => SelectEmployeeint.Equals(m.EmployeeID)).ToList();
+            }
+            /// 公司查
+            if (SelectComponyint != 0)
+            {
+                result = OrderResult.Where(m => SelectComponyint.Equals(m.CustomerID)).ToList();
+            }
+            ViewBag.Result = result;
+            ViewBag.test= OderDate;
+
             return View();
         }
         }
