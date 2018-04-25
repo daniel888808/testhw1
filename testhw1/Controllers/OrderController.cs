@@ -54,6 +54,7 @@ namespace testhw1.Controllers
         public ActionResult SearchOrderResult(FormCollection post ,Models.SalesOrder arg)
         {
             Models.AllService allService = new Models.AllService();
+            
             string OrderID = post["OrderID"];
             string ContactName = post["ContactName"];
             string SelectEmployee = post["SelectEmployee"];
@@ -65,14 +66,23 @@ namespace testhw1.Controllers
             var EmployeeResult = allService.GetEmployeesByCondition(new Models.HrEmployees() {});
             var CustomersResult = allService.GetCustomersByCondition(new Models.SalesCustomers());
             var ShiperResult = allService.GetShiperByCondition(new Models.SalesShippers());
+            try
+            {
+                int OrderIDint = Int32.Parse(OrderID);
+                List<Models.SalesOrder> test = OrderResult.Where(m => OrderIDint.Equals(m.OrderID)).ToList();
+                ViewBag.Result = test;
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine(e.Message);
+            }
             ///string Result="";
-            List<Models.SalesOrder> test = OrderResult.Where(m => OrderID.Equals(m.OrderID)).ToList();
+            
             ///foreach (var category in test)
             ///{
                /// Result=category.OrderID,category.CustomerID,category.EmployeeID, category.ShipperID, category.OrderDate, category.ShippedDate, category.RequiredDate));
             ///}
-            ViewBag.Result = test;
-            ViewBag.OrderID = OrderID;
+            
             return View();
         }
         }

@@ -4,16 +4,23 @@
 
 <h2>SearchOrder</h2>
 
-    <table>
+<table>
+    <th>訂單編號</th>
+    <th>客戶名稱</th>
+    <th>訂購日期</th>
+    <th>發貨日期</th>
+    <th>運費</th>
+    </tr>
+    @foreach (var items in ViewBag.Result)
+    {
         <tr>
-            <th>訂單編號</th>
-            <th>客戶名稱</th>
-            <th>訂購日期</th>
-            <th>發貨日期</th>
-            <th>運費</th>
-            <th>@ViewBag.OrderID</th>
-            <th></th>
+            <td>@items.OrderID</td>
+            <td>@items.CustomerID</td>
+            <td>@items.OrderDate</td>
+            <td>@items.ShippedDate</td>
+            <td>@items.Freight</td>
         </tr>
+    }
 
-    </table>
+</table>
 
