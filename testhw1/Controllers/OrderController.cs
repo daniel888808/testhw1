@@ -105,17 +105,17 @@ namespace testhw1.Controllers
             IEnumerable<Models.SalesCustomers> CustomersResult = allService.GetCustomersByCondition(new Models.SalesCustomers() {});
             IEnumerable<Models.SalesShippers> ShiperResult = allService.GetShiperByCondition(new Models.SalesShippers());
             IEnumerable<Models.SalesOrder> OrderResult = allService.GetOrdersByCondition(new Models.SalesOrder()); ;
-            IEnumerable<Models.SalesOrder> result=null;
+            IEnumerable<Models.SalesOrder> result=OrderResult;
             ///orderid查
             if (!string.IsNullOrWhiteSpace(OrderID))
             {
-                result = OrderResult.Where(m => OrderIDint.Equals(m.OrderID)).ToList();
+                result = result.Where(m => OrderIDint.Equals(m.OrderID)).ToList();
             }
             ///客戶名稱查
             if (!string.IsNullOrWhiteSpace(ContactName))
             {
                 result =
-                    from o in OrderResult
+                    from o in result
                     join c in CustomersResult on o.CustomerID equals c.CustomerID
                     where c.CompanyName.Contains(ContactName)
                     select o;
@@ -125,12 +125,12 @@ namespace testhw1.Controllers
             /// 員工查
             if (SelectEmployeeint != 0)
             {
-                result = OrderResult.Where(m => SelectEmployeeint.Equals(m.EmployeeID)).ToList();
+                result = result.Where(m => SelectEmployeeint.Equals(m.EmployeeID)).ToList();
             }
             /// 公司查
             if (SelectComponyint != 0)
             {
-                result = OrderResult.Where(m => SelectComponyint.Equals(m.CustomerID)).ToList();
+                result = result.Where(m => SelectComponyint.Equals(m.CustomerID)).ToList();
             }
             ///// 訂購日期查
             //if (OderDate !=(1000, 1, 1))
