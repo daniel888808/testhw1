@@ -131,6 +131,7 @@
     <Content Include="Views\Order\SearchOrder.cshtml" />
     <Content Include="Views\Order\SearchOrderResult.cshtml" />
     <Content Include="Views\Order\NewOrders.cshtml" />
+    <Content Include="Views\Order\EditOrders.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

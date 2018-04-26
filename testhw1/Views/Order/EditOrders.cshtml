@@ -1,8 +1,12 @@
 ﻿@model testhw1.Models.SalesOrder
 
-@using (Html.BeginForm("NewOrdersSave", "Order"))
+@using (Html.BeginForm("EditOrdersSave", "Order"))
 {
 <table>
+    <tr>
+        <th>訂單編號</th>
+        <th>@ViewBag.OrderID</th>
+    </tr>
     <tr>
         <th>客戶名稱</th>
         <th>@Html.DropDownList("SelectCustomer", (IEnumerable<SelectListItem>)ViewBag.SelectCustomer)</th>
@@ -13,15 +17,15 @@
     </tr>
     <tr>
         <th>訂購日期</th>
-        <th><input type="date" id="OderDate" name="OderDate" pattern="[0-9]{4}/[0-9]{2}/[0-9]{2}" /></th>
+        <th><input type="date" id="OderDate" name="OderDate" pattern="[0-9]{4}/[0-9]{2}/[0-9]{2}" value="@ViewBag.OrderDate" /></th>
     </tr>
     <tr>
         <th>需要日期</th>
-        <th><input type="date" id="RequiredDate" name="RequiredDate" pattern="[0-9]{4}/[0-9]{2}/[0-9]{2}" /></th>
+        <th><input type="date" id="RequiredDate" name="RequiredDate" pattern="[0-9]{4}/[0-9]{2}/[0-9]{2}" value="@ViewBag.RequiredDate"/></th>
     </tr>
     <tr>
         <th>出貨日期</th>
-        <th><input type="date" id="ShipperDate" name="ShipperDate" pattern="[0-9]{4}/[0-9]{2}/[0-9]{2}" /></th>
+        <th><input type="date" id="ShipperDate" name="ShipperDate" pattern="[0-9]{4}/[0-9]{2}/[0-9]{2}" value="@ViewBag.ShipperDate"/></th>
     </tr>
     <tr>
         <th>出貨公司</th>
@@ -29,23 +33,23 @@
     </tr>
     <tr>
         <th>運費</th>
-        <th><input type="text" id="Freight" name="Freight" /></th>
+        <th><input type="text" id="Freight" name="Freight" value="@ViewBag.Freight"/></th>
     </tr>
     <tr>
         <th>出貨國家</th>
-        <th><input type="text" id="Freight" name="Freight" /></th>
+        <th><input type="text" id="Freight" name="ShipCountry" value="@ViewBag.ShipCountry"/></th>
     </tr>
     <tr>
         <th>出貨城市</th>
-        <th><input type="text" id="Freight" name="Freight" /></th>
+        <th><input type="text" id="ShipCity" name="Freight" value="@ViewBag.ShipCity"/></th>
     </tr>
     <tr>
         <th>出貨地區</th>
-        <th><input type="text" id="Freight" name="Freight" /></th>
+        <th><input type="text" id="Freight" name="ShipRegion" value="@ViewBag.ShipRegion"/></th>
     </tr>
     <tr>
         <th>出貨地址</th>
-        <th><input type="text" id="Freight" name="Freight" /></th>
+        <th><input type="text" id="Freight" name="ShipAddress" value="@ViewBag.ShipAddress"/></th>
     </tr>
 
 
@@ -55,3 +59,4 @@
     </tr>
 </table>
 }
+
