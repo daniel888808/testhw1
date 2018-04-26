@@ -6,21 +6,25 @@
 
 <table>
     <tr>
-    <th>訂單編號</th>
-    <th>客戶名稱</th>
-    <th>訂購日期</th>
-    <th>發貨日期</th>
-    <th>運費 @ViewBag.test</th>
+        <td>訂單編號</td>
+        <td>客戶名稱</td>
+        <td>訂購日期</td>
+        <td>發貨日期</td>
+        <td>運費 @ViewBag.test</td>
+        <td></td>
+        <td></td>
     </tr>
     @foreach (var items in ViewBag.Result)
     {
-        <tr>
-            <td>@items.OrderID</td>
-            <td>@items.CustomerID</td>
-            <td>@items.OrderDate</td>
-            <td>@items.ShippedDate</td>
-            <td>@items.Freight</td>
-        </tr>
+    <tr>
+        <td>@items.OrderID</td>
+        <td>@items.CustomerID</td>
+        <td>@items.OrderDate.ToString("yyyy/MM/dd")</td>
+        <td>@items.ShippedDate.ToString("yyyy/MM/dd")</td>
+        <td>@items.Freight</td>
+        <td>修改</td>
+        <td>刪除</td>
+    </tr>
     }
 
 </table>

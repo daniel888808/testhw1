@@ -130,6 +130,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Order\SearchOrder.cshtml" />
     <Content Include="Views\Order\SearchOrderResult.cshtml" />
+    <Content Include="Views\Order\NewOrders.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

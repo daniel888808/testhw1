@@ -152,5 +152,53 @@ namespace testhw1.Controllers
 
             return View();
         }
+
+        public ActionResult NewOrders(FormCollection post)
+        {
+            Models.AllService allService = new Models.AllService();
+            IEnumerable<Models.HrEmployees> EmployeeResult = allService.GetEmployeesByCondition(new Models.HrEmployees());
+            IEnumerable<Models.SalesCustomers> CustomersResult = allService.GetCustomersByCondition(new Models.SalesCustomers() { });
+            IEnumerable<Models.SalesShippers> ShiperResult = allService.GetShiperByCondition(new Models.SalesShippers());
+            IEnumerable<Models.SalesOrder> OrderResult = allService.GetOrdersByCondition(new Models.SalesOrder()); ;
+            IEnumerable<Models.SalesOrder> result = null;
+            ///員工的select
+            List<SelectListItem> EmpItems = new List<SelectListItem>();
+            foreach (var category in EmployeeResult)
+            {
+                EmpItems.Add(new SelectListItem()
+                {
+                    Text = category.FirstName + category.LastName,
+                    Value = category.EmployeeID.ToString()
+                }
+                    );
+            }
+            ///出貨公司Select
+            List<SelectListItem> ShipperItems = new List<SelectListItem>();
+            foreach (var category in ShiperResult)
+            {
+                ShipperItems.Add(new SelectListItem()
+                {
+                    Text = category.CompanyName,
+                    Value = category.ShipperID.ToString()
+                }
+                    );
+            }
+            ///客戶的Select
+            List<SelectListItem> SelectCustomer = new List<SelectListItem>();
+            foreach (var category in ShiperResult)
+            {
+                SelectCustomer.Add(new SelectListItem()
+                {
+                    Text = category.CompanyName,
+                    Value = category.ShipperID.ToString()
+                }
+                    );
+            }
+            ViewBag.SelectEmployee = EmpItems;
+            ViewBag.SelectCompony = ShipperItems;
+            ViewBag.SelectCustomer = SelectCustomer;
+            ViewBag.Result = result;
+            return View();
         }
+    }
 }
