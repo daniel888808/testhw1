@@ -72,14 +72,25 @@ namespace testhw1.Controllers
             string SelectEmployee = post["SelectEmployee"];
             string SelectCompony = post["SelectCompony"];
             string ContactName = post["ContactName"];
-            string OderDate = post["OderDate"];
-            string ShipperDate = post["ShipperDate"];
-            string RequiredDate = post["RequiredDate"];
+            string OderDatetext = post["OderDate"];
+            string ShipperDatetext = post["ShipperDate"];
+            string RequiredDatetext = post["RequiredDate"];
+            //DateTime OderDate = new DateTime(1000, 1, 1);
+            //DateTime ShipperDate = new DateTime(1000, 1, 1);
+            //DateTime RequiredDate = new DateTime(1000, 1, 1);
+
             try
             {
                 OrderIDint = Int32.Parse(OrderID);
                 SelectEmployeeint = Int32.Parse(SelectEmployee);
                 SelectComponyint = Int32.Parse(SelectCompony);
+                //OderDate = DateTime.Parse(OderDatetext);
+                //ShipperDate = DateTime.Parse(ShipperDatetext);
+                //RequiredDate = DateTime.Parse(RequiredDatetext);
+                //String.Format("{0:yyyy/MM/dd}", OderDate);
+                //String.Format("{0:yyyy/MM/dd}", ShipperDate);
+                //String.Format("{0:yyyy/MM/dd}", RequiredDate);
+
 
             }
             catch (FormatException e)
@@ -121,8 +132,23 @@ namespace testhw1.Controllers
             {
                 result = OrderResult.Where(m => SelectComponyint.Equals(m.CustomerID)).ToList();
             }
+            ///// 訂購日期查
+            //if (OderDate !=(1000, 1, 1))
+            //{
+            //    result = OrderResult.Where(m => SelectComponyint.Equals(m.CustomerID)).ToList();
+            //}
+            ///// 出貨日期查
+            //if (SelectComponyint != 0)
+            //{
+            //    result = OrderResult.Where(m => SelectComponyint.Equals(m.CustomerID)).ToList();
+            //}
+            ///// 需要日期查
+            //if (SelectComponyint != 0)
+            //{
+            //    result = OrderResult.Where(m => SelectComponyint.Equals(m.CustomerID)).ToList();
+            //}
             ViewBag.Result = result;
-            ViewBag.test= OderDate;
+            ViewBag.test= OderDatetext;
 
             return View();
         }
